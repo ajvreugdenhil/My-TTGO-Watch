@@ -138,6 +138,7 @@ void handleUpdate( AsyncWebServerRequest *request, const String& filename, size_
 /*
  *
  */
+#ifndef DISABLE_WEBSERVER
 void asyncwebserver_start(void){
 
   asyncserver.on("/index.htm", HTTP_GET, [](AsyncWebServerRequest *request) {
@@ -453,3 +454,11 @@ void asyncwebserver_end(void) {
   asyncserver.end();
   log_i("disable webserver and ssdp");
 }
+#else
+void asyncwebserver_start(void){
+  log_i("tried to start webserver and ssdp but they were disabled at compile time");
+}
+void asyncwebserver_end(void) {
+  log_i("tried to disable webserver and ssdp but they were disabled at compile time");
+}
+#endif

@@ -76,7 +76,7 @@ jobs:
         firmwareversion=$(cat src/config.h | grep __FIRMWARE__ | tr -s " " | cut -d' ' -f4 | cut -d'"' -f2)
         md5=$(md5sum .pio/build/ttgo-t-watch-v1/firmware.bin | cut -d ' ' -f 1)
         size=$(stat -c %s .pio/build/ttgo-t-watch-v1/firmware.bin)
-        echo "{\"version\":\"$firmwareversion\",\"host\":\"http://www.neo-guerillaz.de\",\"size\":\"$size\",\"file\":\"ttgo-t-watch2020_${{ steps.version_name.outputs.SOURCE_TAG }}.ino.bin\",\"gzipfile\":\"ttgo-t-watch2020_${{ steps.version_name.outputs.SOURCE_TAG }}.ino.bin.gz\",\"md5\":\"$md5\",\"comment\":\"$1\"}" > ttgo-t-watch2020_${{ steps.version_name.outputs.SOURCE_TAG }}.version.json
+        echo "{\"version\":\"$firmwareversion\",\"host\":\"None\",\"size\":\"$size\",\"file\":\"ttgo-t-watch2020_${{ steps.version_name.outputs.SOURCE_TAG }}.ino.bin\",\"gzipfile\":\"ttgo-t-watch2020_${{ steps.version_name.outputs.SOURCE_TAG }}.ino.bin.gz\",\"md5\":\"$md5\",\"comment\":\"$1\"}" > ttgo-t-watch2020_${{ steps.version_name.outputs.SOURCE_TAG }}.version.json
     - name: Upload Version File Asset
       id: upload-version-file-asset 
       uses: actions/upload-release-asset@v1

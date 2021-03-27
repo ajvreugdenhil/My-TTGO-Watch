@@ -27,11 +27,17 @@
 FtpServer ftpSrv;   //set #define FTP_DEBUG in ESP8266FtpServer.h to see ftp verbose on serial
 bool ftpserver_powermgm_event_loop_cb( EventBits_t event, void *arg );
 
+#ifndef DISABLE_FTP
 void ftpserver_start( const char *user, const char *pass ) {
     ftpSrv.begin( user, pass );
     log_i("use ftp user/password: %s/%s", user, pass );
     powermgm_register_loop_cb( POWERMGM_WAKEUP | POWERMGM_SILENCE_WAKEUP, ftpserver_powermgm_event_loop_cb, "handle ftp" );
 }
+#else
+void ftpserver_start( const char *user, const char *pass ) {
+    log_i("FTP is disabled! failed to start with: user/password: %s/%s", user, pass );
+}
+#endif
 
 bool ftpserver_powermgm_event_loop_cb( EventBits_t event, void *arg ) {
     switch( event ) {

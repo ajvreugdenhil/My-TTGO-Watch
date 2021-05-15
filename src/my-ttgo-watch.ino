@@ -45,6 +45,7 @@
 #include "app/stopwatch/stopwatch_app.h"
 #include "app/alarm_clock/alarm_clock.h"
 #include "app/example_app/example_app.h"
+#include "app/bt_media/bluetooth_media_controls_app.h"
 #include "app/osmand/osmand_app.h"
 #include "app/activity/activity.h"
 #include "app/FindPhone/FindPhone.h"
@@ -98,6 +99,7 @@ void setup()
     alarm_clock_setup();
     activity_app_setup();
     example_app_setup();
+    bluetooth_media_controls_app_setup();
     osmand_app_setup();
 	FindPhone_setup();
   	/*
